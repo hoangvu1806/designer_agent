@@ -18,8 +18,9 @@
     --bg-surface-hover: #e8ecf5;
     --bg-surface-active: #dfe5f2;
 
-    --border-subtle: #e2e6f0;
-    --border-strong: #cbd2e3;
+    /* Borderless Theme: Seamless surfaces & refined depth */
+    --border-subtle: transparent;
+    --border-strong: rgba(15, 23, 42, 0.06);
     --border-focus: #6355e7;
 
     --text-primary: #0f172a;
@@ -46,11 +47,11 @@
 
     --chat-user-bg: #edeaff;
     --chat-user-text: #1e1b4b;
-    --chat-user-border: #dcd6ff;
+    --chat-user-border: transparent;
 
-    --shadow-sm: 0 2px 6px rgba(15, 23, 42, 0.04);
-    --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.07);
-    --shadow-lg: 0 20px 48px rgba(15, 23, 42, 0.12);
+    --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.03);
+    --shadow-md: 0 8px 30px rgba(15, 23, 42, 0.06);
+    --shadow-lg: 0 20px 50px rgba(15, 23, 42, 0.09);
     --shadow-glow: 0 0 24px var(--violet-glow);
 
     --code-bg: #1e2433;
@@ -72,52 +73,53 @@
     font-family: var(--font-main);
     color-scheme: dark;
 
-    /* Color Palette - Dark (Deep Slate / Obsidian) */
-    --bg-app: #0a0c12;
-    --bg-canvas: #0e111a;
-    --bg-surface: #141724;
-    --bg-surface-raised: #1a1e30;
-    --bg-surface-hover: #22273d;
-    --bg-surface-active: #29304a;
+    /* Color Palette - True Deep Dark / Obsidian (Neutral Charcoal, No Purple Tint) */
+    --bg-app: #08080a;
+    --bg-canvas: #0c0c0e;
+    --bg-surface: #121215;
+    --bg-surface-raised: #17171c;
+    --bg-surface-hover: #1e1e24;
+    --bg-surface-active: #25252d;
 
-    --border-subtle: #242a40;
-    --border-strong: #363e5c;
+    /* Borderless Dark: Deep Obsidian with atmospheric depth */
+    --border-subtle: transparent;
+    --border-strong: rgba(255, 255, 255, 0.06);
     --border-focus: #7c6df8;
 
-    --text-primary: #f1f5f9;
-    --text-secondary: #cbd5e1;
-    --text-muted: #808ea3;
-    --text-disabled: #475569;
+    --text-primary: #f4f4f6;
+    --text-secondary: #a1a1aa;
+    --text-muted: #71717a;
+    --text-disabled: #52525b;
 
     --violet: #7c6df8;
     --violet-hover: #8e81fa;
-    --violet-soft: rgba(124, 109, 248, 0.16);
-    --violet-glow: rgba(124, 109, 248, 0.28);
+    --violet-soft: rgba(124, 109, 248, 0.12);
+    --violet-glow: rgba(124, 109, 248, 0.22);
 
     --mint: #10b981;
-    --mint-soft: rgba(16, 185, 129, 0.16);
-    --mint-glow: rgba(16, 185, 129, 0.28);
+    --mint-soft: rgba(16, 185, 129, 0.14);
+    --mint-glow: rgba(16, 185, 129, 0.24);
 
     --amber: #f59e0b;
-    --amber-soft: rgba(245, 158, 11, 0.16);
-    --amber-glow: rgba(245, 158, 11, 0.28);
+    --amber-soft: rgba(245, 158, 11, 0.14);
+    --amber-glow: rgba(245, 158, 11, 0.24);
 
     --coral: #f87171;
-    --coral-soft: rgba(248, 113, 113, 0.16);
-    --coral-glow: rgba(248, 113, 113, 0.28);
+    --coral-soft: rgba(248, 113, 113, 0.14);
+    --coral-glow: rgba(248, 113, 113, 0.24);
 
-    --chat-user-bg: #21223d;
-    --chat-user-text: #e0e7ff;
-    --chat-user-border: #3b3a6e;
+    --chat-user-bg: #1c1c22;
+    --chat-user-text: #f4f4f6;
+    --chat-user-border: transparent;
 
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.45);
-    --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.6);
-    --shadow-glow: 0 0 28px var(--violet-glow);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.7);
+    --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.9);
+    --shadow-glow: 0 0 24px rgba(124, 109, 248, 0.2);
 
-    --code-bg: #0b0d14;
-    --code-text: #e2e8f0;
-    --code-header-bg: #121520;
+    --code-bg: #08080a;
+    --code-text: #e4e4e7;
+    --code-header-bg: #111114;
 }
 
 * {
@@ -237,19 +239,20 @@ select option {
     width: 36px;
     height: 36px;
     padding: 0;
-    border: 1px solid var(--border-subtle);
-    border-radius: 10px;
-    background: var(--bg-surface);
+    border: none;
+    border-radius: 11px;
+    background: var(--bg-surface-raised);
     color: var(--text-secondary);
     cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
     transition: all 0.18s ease;
 }
 
 .icon-button:hover {
     background: var(--bg-surface-hover);
     color: var(--text-primary);
-    border-color: var(--border-strong);
     transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
 }
 
 .icon-button:active {
@@ -259,7 +262,6 @@ select option {
 .icon-button.active {
     background: var(--violet-soft);
     color: var(--violet);
-    border-color: var(--violet);
 }
 
 .primary-button,
@@ -296,15 +298,17 @@ select option {
 }
 
 .secondary-button {
-    border: 1px solid var(--border-subtle);
-    background: var(--bg-surface);
+    border: none;
+    background: var(--bg-surface-raised);
     color: var(--text-secondary);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
 }
 
 .secondary-button:hover {
     background: var(--bg-surface-hover);
     color: var(--text-primary);
-    border-color: var(--border-strong);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
 }
 
 /* Sidebar: Session Rail */
@@ -315,7 +319,8 @@ select option {
     display: flex;
     flex-direction: column;
     background: var(--bg-surface);
-    border-right: 1px solid var(--border-subtle);
+    border-right: none;
+    box-shadow: 2px 0 24px rgba(0, 0, 0, 0.02);
     transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 10;
 }
@@ -366,7 +371,7 @@ select option {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    border: 1px solid var(--border-subtle);
+    border: none;
     border-radius: 12px;
     color: var(--text-primary);
     background: var(--bg-surface-raised);
@@ -374,14 +379,14 @@ select option {
     font-size: 14px;
     font-weight: 650;
     letter-spacing: -0.01em;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
     transition: all 0.2s ease;
 }
 
 .new-session:hover {
     background: var(--violet-soft);
     color: var(--violet);
-    border-color: var(--violet);
-    box-shadow: 0 4px 14px var(--violet-glow);
+    box-shadow: 0 4px 16px var(--violet-glow);
     transform: translateY(-1px);
 }
 
@@ -404,7 +409,7 @@ select option {
     gap: 10px;
     padding: 0 12px;
     overflow: hidden;
-    border: 1px solid transparent;
+    border: none;
     border-radius: 10px;
     background: transparent;
     color: var(--text-secondary);
@@ -425,7 +430,6 @@ select option {
 .session-list button.active {
     color: var(--violet);
     background: var(--violet-soft);
-    border-color: rgba(99, 85, 231, 0.25);
     font-weight: 700;
 }
 
@@ -434,12 +438,14 @@ select option {
     height: 8px;
     flex: 0 0 8px;
     border-radius: 50%;
-    background: var(--border-strong);
+    background: var(--text-muted);
+    opacity: 0.5;
     transition: all 0.2s ease;
 }
 
 .session-list button.active .session-dot {
     background: var(--violet);
+    opacity: 1;
     box-shadow: 0 0 0 4px var(--violet-glow);
 }
 
@@ -449,7 +455,7 @@ select option {
     flex-direction: column;
     gap: 6px;
     padding-top: 14px;
-    border-top: 1px solid var(--border-subtle);
+    border-top: none;
 }
 
 .rail-footer button {
@@ -489,7 +495,8 @@ select option {
     min-width: 0;
     padding: 0 24px;
     background: var(--bg-surface);
-    border-bottom: 1px solid var(--border-subtle);
+    border-bottom: none;
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.02);
     backdrop-filter: blur(12px);
     z-index: 5;
 }
@@ -546,7 +553,7 @@ select option {
     padding: 5px 12px;
     border-radius: 999px;
     background: var(--bg-surface-raised);
-    border: 1px solid var(--border-subtle);
+    border: none;
     color: var(--text-secondary);
     font-family: var(--font-main);
     font-size: 12.5px;
@@ -557,7 +564,7 @@ select option {
 .topbar-divider {
     width: 1px;
     height: 22px;
-    background: var(--border-subtle);
+    background: var(--border-strong);
     margin: 0 2px;
 }
 
@@ -569,7 +576,7 @@ select option {
     overflow-x: hidden;
     overflow-y: hidden;
     background: var(--bg-canvas);
-    border-bottom: 1px solid var(--border-subtle);
+    border-bottom: none;
 }
 
 .build-rail {
@@ -622,14 +629,15 @@ select option {
     border-radius: 50%;
     color: var(--text-muted);
     background: var(--bg-surface-raised);
-    border: 1px solid var(--border-subtle);
+    border: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
     transition: all 0.25s ease;
 }
 
 .step-connector {
     flex: 1;
     height: 2px;
-    background: var(--border-subtle);
+    background: var(--bg-surface-active);
     border-radius: 999px;
     min-width: 12px;
     transition: background 0.3s ease;

@@ -17,7 +17,12 @@ import type { Run, RunArtifacts, Session, WorkflowEvent } from "./types";
 import { WorkspaceHeader } from "./WorkspaceHeader";
 import { sessionWorkflowState } from "./workflowState";
 
-const MCP_RETRY_STAGES = new Set(["components", "binding", "assembly", "layout_check"]);
+const MCP_RETRY_STAGES = new Set([
+    "components",
+    "binding",
+    "assembly",
+    "layout_check",
+]);
 
 export default function App() {
     const [sessions, setSessions] = useState<Session[]>([]);
@@ -86,7 +91,9 @@ export default function App() {
             setArtifacts(undefined);
             return;
         }
-        api.getArtifacts(activeRun.id).then(setArtifacts).catch(() => undefined);
+        api.getArtifacts(activeRun.id)
+            .then(setArtifacts)
+            .catch(() => undefined);
     }, [activeRun?.id, activeRun?.revision, activeRun?.stage]);
 
     useEffect(() => {
@@ -160,9 +167,10 @@ export default function App() {
         try {
             const checkpoint =
                 activeRun.stage === "review_final" ? "final" : "specification";
-            const currentProfile = decision === "approved" && checkpoint === "specification"
-                ? requireMcpProfile(connection)
-                : mcpProfile(connection);
+            const currentProfile =
+                decision === "approved" && checkpoint === "specification"
+                    ? requireMcpProfile(connection)
+                    : mcpProfile(connection);
             await api.review(
                 activeRun.id,
                 activeRun.revision,
@@ -179,7 +187,7 @@ export default function App() {
 
     return (
         <div
-            className={`app-shell ${collapsed ? "rail-collapsed" : ""} ${reviewOpen ? "" : "review-closed"} ${workflow ? "" : "workflow-hidden"}`}
+            className={`app-shell ${collapsed ? "rail-collapsed" : ""} ${reviewOpen ? "" : "review-closed"}`}
         >
             <SessionRail
                 sessions={sessions}
@@ -201,11 +209,9 @@ export default function App() {
                 onSettings={() => setSettingsOpen(true)}
             />
 
-            {workflow && (
-                <section className="timeline-slot">
-                    <BuildRail stage={workflow.stage} status={workflow.status} />
-                </section>
-            )}
+            <section className="timeline-slot">
+                <BuildRail stage={workflow?.stage} status={workflow?.status} />
+            </section>
 
             <ChatWorkspace
                 run={activeRun}
@@ -217,7 +223,9 @@ export default function App() {
                 onRetry={async () => {
                     if (!activeRun) return;
                     try {
-                        const profile = MCP_RETRY_STAGES.has(activeRun.error?.stage ?? "")
+                        const profile = MCP_RETRY_STAGES.has(
+                            activeRun.error?.stage ?? "",
+                        )
                             ? requireMcpProfile(connection)
                             : mcpProfile(connection);
                         await api.retry(activeRun.id, profile);
@@ -238,7 +246,11 @@ export default function App() {
             />
 
             {reviewOpen && (
-                <ReviewPanel run={activeRun} artifacts={artifacts} onReview={review} />
+                <ReviewPanel
+                    run={activeRun}
+                    artifacts={artifacts}
+                    onReview={review}
+                />
             )}
 
             {notice && (
@@ -258,7 +270,9 @@ export default function App() {
                     onSave={(value) => {
                         const normalized = {
                             ...value,
-                            mcpEndpoint: normalizeMcpEndpoint(value.mcpEndpoint),
+                            mcpEndpoint: normalizeMcpEndpoint(
+                                value.mcpEndpoint,
+                            ),
                             sourceFile: value.sourceFile.trim(),
                         };
                         setConnection(normalized);
