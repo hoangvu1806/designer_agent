@@ -1,0 +1,87 @@
+# Environment & Secrets (CRITICAL)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.cert
+*.crt
+
+# Virtual Environments & Python
+.venv/
+venv/
+env/
+ENV/
+__pycache__/
+*.py[cod]
+data/
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing & Quality
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.deepeval/
+node_modules/
+dist/
+coverage/
+.coverage
+.coverage.*
+nosetests.xml
+coverage.xml
+*.cover
+test-results/
+playwright-report/
+
+# Databases & Runtime Data
+data/
+*.db
+*.sqlite
+*.sqlite3
+*.log
+previews/
+
+# Node & Frontend
+node_modules/
+frontend/node_modules/
+frontend/dist/
+*.tsbuildinfo
+coverage/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# IDE & OS
+.idea/
+.vscode/
+*.swp
+*.swo
+*.sublime-*
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Archives & Bundles
+*.zip
+*.tar.gz
+*.rar
+*.7z

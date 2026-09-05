@@ -1,0 +1,34 @@
+services:
+    backend:
+        build:
+            context: .
+            dockerfile: backend/Dockerfile
+        container_name: designer-agent-backend
+        restart: unless-stopped
+        env_file:
+            - .env
+        environment:
+            - BACKEND_PORT=${BACKEND_PORT:-8282}
+            - DESIGN_DATA_DIR=/app/designer-data
+            - DATABASE_URL=sqlite:////app/designer_agent/data/designer_agent.db
+        ports:
+            - "${BACKEND_PORT:-8282}:8282"
+        volumes:
+            - ./data:/app/designer_agent/data
+            - ../designer-data:/app/designer-data
+            - ./.env:/app/designer_agent/.env
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+
+    frontend:
+        build:
+            context: ./frontend
+            dockerfile: Dockerfile
+            args:
+                - VITE_API_BASE_URL=/api/v1
+        container_name: designer-agent-frontend
+        restart: unless-stopped
+        ports:
+            - "${FRONTEND_PORT:-3232}:3232"
+        depends_on:
+            - backend
